@@ -1,3 +1,9 @@
+# -*- coding: UTF-8 -*-
+import requests
+import re
+import time
+import ConfigParser
+import base64
 
 login_data = {
 	'username': '',
@@ -29,3 +35,14 @@ def Readini():
 	login_data['domain'] = config.get("login","domain")
 	login_data['password'] = base64.b64encode(config.get("login","password"))
 	login_data['enablemacauth'] = '0'
+
+def main():
+	Readini()
+	print "The default login user:"	
+	print login_data['username']
+	print login_data['domain']
+	while(1):
+		if (check() == False):
+			login()
+		time.sleep(30)
+main()
