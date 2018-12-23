@@ -22,3 +22,10 @@ def check():
 	if (flag != -1):
 		print "Wifi has been disconnected.\nTry to reconnect."
 		return False
+def Readini():
+	config = ConfigParser.ConfigParser()
+	config.readfp(open('logindata.ini'))
+	login_data['username'] = config.get("login","username")
+	login_data['domain'] = config.get("login","domain")
+	login_data['password'] = base64.b64encode(config.get("login","password"))
+	login_data['enablemacauth'] = '0'
